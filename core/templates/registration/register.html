@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block title %}Kitty Registration{% endblock %}
+{% block title %}Liotwi Registration{% endblock %}
 {% block css %}
     <style type="text/css">
         .form-horizontal { margin: 50px auto 200px; }
@@ -38,6 +38,12 @@
                 {{ form.password2 }}
                 <p class="help-block">{{ form.password2.help_text}}</p>
                 <span class="help-inline">{{ form.password2.errors }}</span>
+            </div>
+        </div>
+        <div class="control-group ">
+            <label class="control-label"><label for="cell_phone">Cell Phone Number:</label></label>
+            <div class="controls">
+                <input id="cell_phone" name="cell_phone" type="cell_phone" />
             </div>
         </div>
         <div class="form-actions">
