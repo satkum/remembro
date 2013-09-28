@@ -165,10 +165,10 @@ LOGGING = {
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'd13vbhnkq73rhk',
-    'HOST': 'ec2-54-227-239-195.compute-1.amazonaws.com',
+    'NAME': 'dgo94hg456ane',
+    'HOST': 'ec2-23-23-211-161.compute-1.amazonaws.com',
     'PORT': 5432,
-    'USER': 'wdyfhpxgvtaqao',
+    'USER': 'objwkqtmvebtzt',
     'PASSWORD': 'Rfzowiftr4buOh1Y66Ei04QQAO'
   }
 }
