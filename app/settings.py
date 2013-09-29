@@ -127,6 +127,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'core',
+    #'djcelery',
+    'django_twilio',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -188,3 +190,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+#import djcelery
+#djcelery.setup_loader()
+
+# Twilio stuff
+TWILIO_ACCOUNT_SID = 'AC53aec0ab5de3329f08e1b3bbf0847cc8'
+TWILIO_AUTH_TOKEN = '66c8d9542924928fe6d8c87cfbe28687'
