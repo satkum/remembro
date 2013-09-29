@@ -127,9 +127,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'core',
+    'django_twilio',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+TWILIO_ACCOUNT_SID = 'AC53aec0ab5de3329f08e1b3bbf0847cc8'
+TWILIO_AUTH_TOKEN = '66c8d9542924928fe6d8c87cfbe28687'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
