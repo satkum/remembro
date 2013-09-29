@@ -57,7 +57,7 @@ def remove_meow(request, meow_id):
 
 @login_required
 def show_meow(request, meow_id):
-    if request.method == "GET":
+    if request.method == "GET" or request.method == "POST":
         meow = get_object_or_404(Meow, pk=meow_id)
         return say(request,meow.text);
     raise Http404
