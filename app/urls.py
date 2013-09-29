@@ -24,6 +24,7 @@ urlpatterns = patterns('',
 
     url(r'^meow/add', add_meow),
     url(r'^meow/remove/(\d+)', remove_meow),
+    url(r'^meow/show/(\d+)', show_meow),
     url(r'^user/subscribe/(\d+)', subscribe_user),
     url(r'^user/unsubscribe/(\d+)', unsubscribe_user)
 )

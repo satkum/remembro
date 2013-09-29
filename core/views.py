@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from core.models import *
-
+from django_twilio.views import say
 def login(request):
     if request.method == 'POST':
         user = auth.authenticate(username=request.POST.get('username'),
@@ -54,6 +54,14 @@ def remove_meow(request, meow_id):
         meow.delete()
         return redirect('/user/%s' % user.id)
     raise Http404
+
+@login_required
+def show_meow(request, meow_id):
+    if request.method == "GET":
+        meow = get_object_or_404(Meow, pk=meow_id)
+        return say(request,meow.text);
+    raise Http404
+
 
 @login_required
 def subscribe_user(request, user_id):
