@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from core.models import *
-import datetime
 
 def login(request):
     if request.method == 'POST':
@@ -39,10 +38,8 @@ def add_meow(request):
     if request.method == "POST":
         user = request.user
         new_meow_text = request.POST.get('new_meow')
-	alarm_t = request.POST.get('alarm_time')
-	#formatted_time = #datetime.datetime.strptime(alarm_t, "%d/%b/%Y:%H:%M:%S")
         new_meow = Meow(text=new_meow_text,
-                        user=user,)
+                        user=user)
         new_meow.save()
         return redirect('/user/%s' % user.id)
     raise Http404
