@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from core.models import *
 from django_twilio.views import say
+from twilio.rest import TwilioRestClient
+
 def login(request):
     if request.method == 'POST':
         user = auth.authenticate(username=request.POST.get('username'),
@@ -41,6 +43,18 @@ def add_meow(request):
         new_meow = Meow(text=new_meow_text,
                         user=user)
         new_meow.save()
+	account_sid = "AC53aec0ab5de3329f08e1b3bbf0847cc8"
+	auth_token = "66c8d9542924928fe6d8c87cfbe28687"
+	client = TwilioRestClient(account_sid, auth_token)
+	try:
+		message = client.sms.messages.create(
+				body= new_meow_text,
+				to="+18623683538",
+				from_="+19735100093"
+				)
+	except twilio.TwilioRestException as e:
+		print e
+
         return redirect('/user/%s' % user.id)
     raise Http404
 
