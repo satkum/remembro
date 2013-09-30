@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^user/(\d+)', user_home),
 
     url(r'^meow/add', add_meow),
+    url(r'^meow/send_msg', send_sms),
     url(r'^meow/remove/(\d+)', remove_meow),
     url(r'^meow/show/(\d+)', show_meow),
     url(r'^user/subscribe/(\d+)', subscribe_user),

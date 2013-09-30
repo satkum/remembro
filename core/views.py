@@ -43,19 +43,26 @@ def add_meow(request):
         new_meow = Meow(text=new_meow_text,
                         user=user)
         new_meow.save()
+	return redirect('/user/%s' % user.id)
+    raise Http404
+
+@login_required
+def send_sms(request):
+    if request.method == "POST":
+	user = request.user
+        msg_text = request.POST.get('text_msg')
+	to_phone = request.POST.get('ph_number')
 	account_sid = "AC53aec0ab5de3329f08e1b3bbf0847cc8"
 	auth_token = "66c8d9542924928fe6d8c87cfbe28687"
 	client = TwilioRestClient(account_sid, auth_token)
-	try:
-		message = client.sms.messages.create(
-				body= new_meow_text,
-				to="+18623683538",
-				from_="+19735100093"
-				)
-	except twilio.TwilioRestException as e:
-		print e
 
-        return redirect('/user/%s' % user.id)
+	message = client.sms.messages.create(
+			body= msg_text,
+			to=to_phone,
+			from_="+19735100093"
+			)
+
+        return user_home(request, user.id, True)
     raise Http404
 
 @login_required
@@ -100,7 +107,7 @@ def unsubscribe_user(request, user_id):
     raise Http404
 
 @login_required  
-def user_home(request, user_id):
+def user_home(request, user_id, msg_sent=False):
     user = get_object_or_404(User, pk=user_id)
     logged_user = request.user
     meows = []
@@ -128,7 +135,8 @@ def user_home(request, user_id):
         'same_user': same_user,
         'followers': followers,
         'following': following,
-        'am_following': am_following
+        'am_following': am_following,
+	'msg_sent' : msg_sent
     }
     context.update(csrf(request))
     return render_to_response('user_home.html', context)
